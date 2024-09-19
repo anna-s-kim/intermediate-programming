@@ -1,6 +1,5 @@
 #!/bin/bash
 name="Hi, what's your name?"
-read
 echo $name
 read input
 icecream="What's your favorite flavor of ice cream?"
