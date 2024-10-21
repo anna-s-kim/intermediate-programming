@@ -8,7 +8,7 @@ import java.util.Scanner;
         System.out.print("Hi! What is your name?");
         String name = input.nextLine();
 
-        System.out.print("Hi " + name + "! What is your favorite icecream?");
+        System.out.print("Hi " + name + "! What is your favorite ice cream?");
         String icecream = input.nextLine();
         System.out.print("I love " + icecream + " too!");
 
@@ -17,10 +17,10 @@ import java.util.Scanner;
         int age = input.nextInt();
         
         if (age >= 18) {
-            System.out.println("You are an adult, you can eat a lot of icecream");
+            System.out.println("You are an adult, you can eat a lot of ice cream");
         }
         else {
-            System.out.println("You are a kid, you can eat only one icereamm");
+            System.out.println("You are a kid, you can eat only one ice cream");
         }
     }
 }
