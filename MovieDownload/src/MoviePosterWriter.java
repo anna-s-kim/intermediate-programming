@@ -1,14 +1,9 @@
-/*
- * Irene Feng 3/23/2023
- */
-
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
-
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +35,8 @@ public class MoviePosterWriter implements RestApiWriterInterface {
             if (searchResults.length() > 0) {
                 JSONObject firstResult = searchResults.getJSONObject(0);
                 String posterUrl = firstResult.getString("Poster");
-                // download poster from poster url
+              	movieYear = firstResult.getString("Year");
+              
                 try (BufferedInputStream in = new BufferedInputStream(new URI(posterUrl).toURL().openStream());
                         FileOutputStream fileOutputStream = new FileOutputStream(filename)) {
                     byte dataBuffer[] = new byte[1024];
@@ -49,15 +45,12 @@ public class MoviePosterWriter implements RestApiWriterInterface {
                         fileOutputStream.write(dataBuffer, 0, bytesRead);
                     }
                 } catch (IOException | URISyntaxException e) {
-                    // handle exception
+                  	e.printStackTrace();
                 }
-
-                movieYear = firstResult.getString("Year");
             }
 
         } catch (JSONException e) {
-            System.out.println("Sorry, there was a JSONException in the response.");
-            System.out.println("We look for the poster in {'Search': [{'Poster'... }]}, json object. We got " + json);
+            System.out.println("Error parsing JSON response");
         }
     }
 

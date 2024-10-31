@@ -1,8 +1,3 @@
-/*
- * Irene Feng 3/23/2023
- * Interfaces and learning about APIs
- */
-
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
