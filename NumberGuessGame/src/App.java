@@ -1,14 +1,15 @@
 // Copyright 2024 Anna Kim
 
-import java.util.Random; // random number generator 
-import java.util.Scanner; // scanner generator 
+import java.util.ArrayList; // random number generator
+import java.util.Random; // scanner generator
+import java.util.Scanner;
 
 public class App {
   public static void main(String[] args) { 
     int best = -1; 
     int current;
     int numberofgames = 3;
-    
+
     System.out.println("This is a number guessing game. You will play "  + Integer.toString(numberofgames) + " rounds!");
     
     for (int i = 0; i < numberofgames; i += 1) { 
@@ -30,7 +31,10 @@ public class App {
   }
 
   public static int RunGame (){
+    
     Scanner input = new Scanner(System.in); // using scanner 
+
+    ArrayList<Integer> guessednums = new ArrayList<> ();
           
     System.out.println("Enter the minimum value for your range.");
    
@@ -98,14 +102,23 @@ public class App {
       if (number == target) {
         System.out.println("You guessed the right number!");
         // when the number guessed is the target number, it lets the player know they got it right 
+        count = count + 1; // adds 1 to count value each time a number is guessed
+        guessednums.add(number);
       }
-      else if (number > target) { 
-        System.out.println("The number is lower!"); // when the number guessed is greater than the target number, it tells the player to guess a lower number
-      }
+      else if (guessednums.contains(number)) {  
+        // when a number that has been guessed is guessed again, the code asks for the person to guess a different number
+        System.out.println("Please guess a number that you have not guessed.");
+      } 
       else if (number < target) { // when the number guessed is less than the target number, it tells the player to guess a higher number
         System.out.println("The number is higher!");
+        count = count + 1; // adds 1 to count value each time a number is guessed
+        guessednums.add(number);
       }
-      count = count + 1; // adds 1 to count value each time a number is guessed
+      else if (number > target) { // when the number guessed is greater than the target number, it tells the player to guess a lower number
+        System.out.println("The number is lower!");
+        count = count + 1; // adds 1 to count value each time a number is guessed
+        guessednums.add(number);
+      }
     }
     return count; // returns the count value
   }
