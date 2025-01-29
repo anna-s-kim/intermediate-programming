@@ -7,6 +7,7 @@
 //We did everything together
 import java.util.Scanner;
 //import scanner
+//import hashmap
 
 public class Quiz {
 
@@ -40,7 +41,7 @@ public class Quiz {
         q1.possibleAnswers[2] = new Answer("Caramel Latte", mickeymouse);
         q1.possibleAnswers[3] = new Answer("Coffee", abu);
         q1.possibleAnswers[4] = new Answer("Chocoolate Frappuccino", sofiathefirst);
-        q1.possibleAnswers[5] = new Answer("Simba", simba);
+        q1.possibleAnswers[5] = new Answer("Pumpkin Spice Latte", simba);
 
         Question q2 = new Question("Your friend forces you to go on a ride/roller coaster. Which one do you choose to go on?");
         q2.possibleAnswers[0] = new Answer("It’s a Small World", aurora);
@@ -102,7 +103,7 @@ public class Quiz {
         q9.possibleAnswers[0] = new Answer("Mini Golf", aurora);
         q9.possibleAnswers[1] = new Answer("F1", stitch);
         q9.possibleAnswers[2] = new Answer("Track", mickeymouse);
-        q9.possibleAnswers[3] = new Answer("Mini Golf", abu);
+        q9.possibleAnswers[3] = new Answer("Gymnastics", abu);
         q9.possibleAnswers[4] = new Answer("Sailing", sofiathefirst);
         q9.possibleAnswers[5] = new Answer("Wrestling", simba);
 
@@ -128,7 +129,19 @@ public class Quiz {
         int index = getMostPopularCatIndex(cList);
         System.out.println("If you were a Disney character, you would be " + cList[index].label + ". ");
         System.out.println(cList[index].description);
+        FileSave results = new FileSave(); //initializes file
+        results.updateResult(cList[index].label);
 
+        FileSave fsave = new FileSave("BuzzFeedQuizResults.csv");
+        if (fsave.results.containsKey(cList[index].label)) {
+            fsave.results.put(cList[index].label, Integer.toString(Integer.parseInt(fsave.results.get(cList[index].label)) + 1));
+        } else {
+            fsave.results.put(cList[index].label, "1");
+        }
+        fsave.writeResults();
+        for (String key : fsave.getResults().keySet()) {
+            System.out.println(key + " was chosen " + Integer.valueOf(fsave.results.get(key)) + " time(s)");
+        }
     }
 
     public static void gameIntro() {
@@ -168,5 +181,4 @@ public class Quiz {
         }
         return maxIndex;
     }
-
 }
