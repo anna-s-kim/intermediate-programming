@@ -15,12 +15,14 @@ public interface GameWriteable extends Game {
     // compares the score of this game to current highscore.
     // returns true if this score is "higher" than the current highscore
     // the current high score might be NULL, so be careful.
-    public boolean isHighScore(String score, String currentHighScore);
-        if (score > currentHighScore) {
-            return True;
-        }
-        if else {
-            return False; 
+    public boolean isHighScore(String score, String currentHighScore) {
+       
+        if (currentHighScore== null) {
+            return true;
+          }
+           else if (score > currentHighScore) {
+               return false;
+           }
         }
 
     public default void writeHighScore(File f) {
@@ -28,7 +30,7 @@ public interface GameWriteable extends Game {
         // (getBestScore) using isHighScore
         // and if it is a high score, replace that line of the file with the new high
         // score.
-        String score = getScore();
+        String score = getScore(gameName);
         String highScore = getBestScore(f);
         System.out.println("Thank you for playing! Your score was " + score);
 
@@ -73,7 +75,7 @@ public interface GameWriteable extends Game {
                     // bad line or not this game, skip
                     continue;
                 }
-                if else {
+                else {
                 highScore = data[1];
                 break;
                 }
