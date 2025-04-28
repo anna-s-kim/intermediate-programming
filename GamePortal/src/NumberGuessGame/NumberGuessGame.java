@@ -57,7 +57,7 @@ public class NumberGuessGame implements GameWriteable {
   }
   
 
-  public static int RunGame (){
+  public int RunGame (){
     
     Scanner input = new Scanner(System.in); // using scanner 
 
@@ -140,7 +140,8 @@ public class NumberGuessGame implements GameWriteable {
         count = count + 1; // adds 1 to count value each time a number is guessed
         guessednums.add(number);
       }
-      else if (number > target) { // when the number guessed is greater than the target number, it tells the player to guess a lower number
+      else if (number > target) { 
+        // when the number guessed is greater than the target number, it tells the player to guess a lower number
         System.out.println("The number is lower!");
         count = count + 1; // adds 1 to count value each time a number is guessed
         guessednums.add(number);

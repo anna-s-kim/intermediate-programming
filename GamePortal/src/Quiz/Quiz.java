@@ -136,19 +136,6 @@ public class Quiz implements GameWriteable {
         int index = getMostPopularCatIndex(cList);
         System.out.println("If you were a Disney character, you would be " + cList[index].label + ". ");
         System.out.println(cList[index].description);
-        FileSave results = new FileSave(); //initializes file
-        results.updateResult(cList[index].label);
-
-        FileSave fsave = new FileSave("BuzzFeedQuizResults.csv");
-        if (fsave.results.containsKey(cList[index].label)) {
-            fsave.results.put(cList[index].label, Integer.toString(Integer.parseInt(fsave.results.get(cList[index].label)) + 1));
-        } else {
-            fsave.results.put(cList[index].label, "1");
-        }
-        fsave.writeResults();
-        for (String key : fsave.getResults().keySet()) {
-            System.out.println(key + " was chosen " + Integer.valueOf(fsave.results.get(key)) + " time(s)");
-        } 
     }
 
     @Override
